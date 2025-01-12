@@ -3,7 +3,8 @@ Chatbot build using llama model
 
 
 ### Repo Structure
-grade-specific-chatbot/
+```
+LLM-Chatbot/
 │
 ├── data/
 │   ├── books/
@@ -52,3 +53,4 @@ grade-specific-chatbot/
 ├── LICENSE                 # License file (if applicable)
 ├── .gitignore              # Files and directories to ignore in Git
 └── run.sh                  # Script to build and run the Docker container
+```
