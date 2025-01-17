@@ -1,7 +1,7 @@
 from retrieval import VectorDBBuilder
 
 def main():
-    config_file = 'config.yaml'
+    config_file = '../config/config.yaml'
     builder = VectorDBBuilder(config_file)
     builder.build_all_vector_dbs()
 

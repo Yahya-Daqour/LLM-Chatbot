@@ -1,5 +1,5 @@
 import re
-from llama_index.data_structs.node import Node
+from llama_index.core import Document
 
 class TextCleaner:
     def __init__(self):
@@ -105,6 +105,6 @@ class DocumentProcessor:
             )
             
             # Create a new Document object with the cleaned content
-            cleaned_documents.append(Node(text=combined_content))
+            cleaned_documents.append(Document(text=combined_content))
         
         return cleaned_documents
