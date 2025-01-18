@@ -31,12 +31,39 @@ st.sidebar.title("Settings")
 grades = config['grades']
 selected_grade = st.sidebar.selectbox("Choose a grade:", grades)
 
+# Available LLM models
+models = {
+    "llama3-70b-8192": {
+        "name": "LLaMA3-70b-Instruct",
+        "tokens": 8192,
+        "developer": "Meta",
+    },
+    "llama3-8b-8192": {
+        "name": "LLaMA3-8b-Instruct",
+        "tokens": 8192,
+        "developer": "Meta",
+    },
+    "mixtral-8x7b-32768": {
+        "name": "Mixtral-8x7b-Instruct-v0.1",
+        "tokens": 32768,
+        "developer": "Mistral",
+    },
+    "gemma-7b-it": {"name": "Gemma-7b-it", "tokens": 8192, "developer": "Google"},
+}
+
+# Model selection and max tokens slider
+model_option = st.sidebar.selectbox(
+    "Choose a model:",
+    options=list(models.keys()),
+    format_func=lambda x: models[x]["name"],
+)
+
 # Initialize session state for messages and selected model
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-if "selected_model" not in st.session_state:
-    st.session_state.selected_model = "default-model"
+# if "selected_model" not in st.session_state:
+    st.session_state.selected_model = model_option
 
 # Load the vector DB
 index = builder.load_vectordb(selected_grade)
