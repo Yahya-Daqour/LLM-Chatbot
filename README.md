@@ -27,30 +27,34 @@ A chatbot application utilizing Retrieval
 
 ## Prerequisites
 
+1. Docker: Ensure Docker is installed on your system. You can download Docker from Docker's official site.
 
-- Python 3.9+
+2. Docker Hub Account: Required if you plan to push the image to Docker Hub.
 
-- Required Python libraries (see requirements.txt)
+## Setup Instructions
 
-- Groq API key for LLM service
+1. Build the Docker Image
 
-## Installation
+Run the following command to build the Docker image:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Yahya-Daqour/LLM-Chatbot.git
-   cd LLM-Chatbot
-   ```
-2. Create and activate a Conda environment:
-    ```bash
-    conda create -n chatbot-env python=3.9 -y
-    conda activate chatbot-env
-   ```
-3. Install the dependencies:
-    ```bash
-    conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia # Edit cuda version to match your device
-    pip install -r requirements.txt
-    ```
+```bash
+docker build -t llm-chatbot .
+```
+
+2. Run the Docker Container
+
+Start the container using:
+
+```bash
+docker run -p 8501:8501 llm-chatbot
+```
+
+3. Access the Application
+
+Once the container is running, open your web browser and navigate to:
+
+`http://localhost:8501`
+
 4. Set up Streamlit secrets: Create a `.streamlit/secrets.toml` file in the `src/backend/` directory with the following content:
     ```toml
     [groq_api_key]
@@ -59,13 +63,6 @@ A chatbot application utilizing Retrieval
     ```
 5. Adjust configuration: Update config/config.yaml with your desired settings for grades, models, etc.
 
-## Running the Application
-1. Modify the `PYTHONPATH` in `run.sh`
-2. Run the below script
-    ```bash
-    sh run.sh
-    ```
-Open the application in your browser at `http://localhost:8501`.
 
 ## Usage
 
