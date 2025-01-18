@@ -17,13 +17,6 @@ A chatbot application utilizing Retrieval
 - Context
 -aware responses based on vector database queries.
 
-## Requirements
-
-- Python 3.9+
-
-- Conda environment (recommended)
-
-- Required packages are listed in `requirements.txt`
 
 ## Prerequisites
 
