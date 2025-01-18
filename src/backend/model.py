@@ -10,8 +10,12 @@ class LLMModel:
                 model=model,
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=max_tokens,
-                stream=True,
+                stream=False,
             )
-            return completion
+
+            # Extract the content from the response
+            response_text = completion.choices[0].message.content
+            return response_text
         except Exception as e:
             raise RuntimeError(f"LLM API call failed: {e}")
+
