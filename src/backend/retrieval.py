@@ -3,7 +3,9 @@ import yaml
 from utils import TextCleaner, DocumentProcessor
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core import Settings, SimpleDirectoryReader, VectorStoreIndex, StorageContext
-
+from llama_index.core.retrievers import VectorIndexRetriever
+from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.postprocessor import SimilarityPostprocessor
 
 
 class VectorDBBuilder:
@@ -75,7 +77,20 @@ class VectorDBBuilder:
             # Initialize the VectorStoreIndex with the storage context and index structure
             index = VectorStoreIndex(index_struct=index_struct, storage_context=storage_context)
             print(f"Index for grade {grade} loaded successfully.")
-            return index
+            
+            # Set number of docs to retreive
+            top_k = self.query_config['top_k']
+            # Configure retriever
+            retriever = VectorIndexRetriever(
+                index=index,
+                similarity_top_k=top_k,
+            )
+            # Assemble query engine
+            query_engine = RetrieverQueryEngine(
+                retriever=retriever,
+                node_postprocessors=[SimilarityPostprocessor(similarity_cutoff=self.query_config['similarity_cutoff'])],
+            )            
+            return query_engine
         else:
             raise FileNotFoundError(f"No saved index found in {persist_dir}.")
     def load_all_vector_dbs(self):
