@@ -84,8 +84,8 @@ if user_prompt:
     context = index.as_query_engine().query(user_prompt)
 
     # Check if context is a Response object, and extract the text properly
-    if hasattr(context, 'results'):
-        context_text = "\n".join([doc.text for doc in context.results])
+    if hasattr(context, 'response'):
+        context_text = context.response
     else:
         context_text = ""
 
@@ -94,15 +94,16 @@ if user_prompt:
 
     # Generate response from the LLM
     try:
-        response = st.session_state.model.generate_response(
+        response_text = st.session_state.model.generate_response(
             model=st.session_state.selected_model,
             prompt=full_prompt,
             max_tokens=512,
         )
+
         # Store assistant message in session state
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        st.session_state.messages.append({"role": "assistant", "content": response_text})
         
         # Display assistant response
-        st.markdown(f"**🤖 Assistant:** {response}")
+        st.markdown(f"**🤖 Assistant:** {response_text}")
     except Exception as e:
         st.error(f"Error generating response: {e}")
