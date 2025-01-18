@@ -1,5 +1,5 @@
-root_dir: '/data/books' # path_to_your_root_directory
-databases_dir: '/src/backend/databases/vectordb' # path_to_your_databases_directory
+root_dir: '/app/data/books' # path_to_your_root_directory
+databases_dir: '/app/src/backend/databases/vectordb' # path_to_your_databases_directory
 grades:
   - Grade4
   - Grade5
