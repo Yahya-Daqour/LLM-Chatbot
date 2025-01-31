@@ -1,21 +1,20 @@
 # LLM-Chatbot
-A chatbot application utilizing Retrieval
--Augmented Generation (RAG) to provide contextual responses by combining information retrieval with large language model (LLM) capabilities.
+A chatbot application utilizing Retrieval-Augmented Generation (RAG) to provide contextual responses by combining information retrieval with large language model (LLM) capabilities.
+
+## Pipeline
+![Alt text](images/pipeline/low-level-chatbot-pipleline-diagram.drawio.png)
 
 ## Features
 
-- Streamlit
--based user interface for easy interaction.
+- Streamlit-based user interface for easy interaction.
 
-- Retrieval
--Augmented Generation (RAG) pipeline using vector databases.
+- Retrieval-Augmented Generation (RAG) pipeline using vector databases.
 
 - Supports multiple LLMs with configurable models.
 
 - Sidebar configuration for grades and model selection.
 
-- Context
--aware responses based on vector database queries.
+- Context-aware responses based on vector database queries.
 
 
 ## Prerequisites
